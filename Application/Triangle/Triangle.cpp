@@ -1,6 +1,3 @@
-#include <iostream>
+#include "Platform/IApplication.h"
 
-
-int main(){
-    std::cout<< "hello world"<< std::endl;
-}
+DEFINE_APPLICATION_MAIN(Triangle)

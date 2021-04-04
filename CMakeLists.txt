@@ -30,7 +30,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHs-c-")
 	#设置入口为main, 且为普通窗口,不为Console
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup") 
-  	add_definitions(-D_HAS_EXCEPTIONS=0)
+  	add_definitions(-D_HAS_EXCEPTIONS=0) #-D后面跟宏
+	add_definitions(-DPLATFORM_WINDOWS)
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 
 #TODO: 修改输出路径
@@ -41,7 +42,9 @@ set(ALL_LIBS
 	Core
 )
 
+#添加全局路径
 include_directories(Engine/Core/Include)
 
+#添加Lib和EXE
 add_subdirectory(Engine/Core)
 add_subdirectory(Application/Triangle)

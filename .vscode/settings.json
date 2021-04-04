@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.cmake": "makefile",
+        "xiosbase": "cpp",
+        "ostream": "cpp"
+    }
+}
