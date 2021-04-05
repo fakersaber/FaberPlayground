@@ -33,7 +33,7 @@ WinApplication::~WinApplication(){
 	}
 }
 
-void WinApplication::MakeWindow(int32 width, int32 height, const char* title){
+void WinApplication::Init(int32 width, int32 height, const char* title){
 
 }
 

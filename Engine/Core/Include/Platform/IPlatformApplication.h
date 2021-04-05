@@ -11,7 +11,7 @@ public:
 public:
 	IPlatformAppication() : WindowPtr(nullptr) { };
 	virtual ~IPlatformAppication() {}
-    virtual void MakeWindow(int32 width, int32 height, const char* title) = 0;
+    virtual void Init(int32 width, int32 height, const char* title) = 0;
     virtual void Tick(const float DeltaTime) = 0;
     virtual void Release() = 0;
 
