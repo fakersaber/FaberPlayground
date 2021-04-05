@@ -1,3 +1,3 @@
-#include "Platform/IApplication.h"
+class TriangleApp{
 
-DEFINE_APPLICATION_MAIN(Triangle)
+};

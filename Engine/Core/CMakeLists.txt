@@ -1,28 +1,41 @@
-# set(Faber_Math_HEAD "Include/Math/*.h" "Include/Math/*.hpp")
-# set(Faber_Math_SRC "Include/Math/*.cpp")
+file(GLOB Faber_ENGINE_HEAD "Include/*.h" "Include/*.hpp")
+file(GLOB Faber_ENGINE_SRC "Sources/*.cpp" "Sources/*.h" "Sources/*.hpp")
+
+file(GLOB Faber_LAUNCH_HEAD "Include/Launch/*.h" "Include/Launch/*.hpp")
+file(GLOB Faber_LAUNCH_SRC "Sources/Launch/Launch.cpp")
 
 file(GLOB Faber_PLATFORM_HEAD "Include/Platform/*.h" "Include/Platform/*.hpp")
-
-#注意Cmake的set variable需要创建,不能随便调用set
 IF(WIN32)
-    file(GLOB Faber_PLATFORM_SRC "Sources/Platform/Windows/*.cpp")
+    file(GLOB Faber_PLATFORM_SRC "Sources/Platform/Windows/*.cpp" "Sources/Platform/Windows/*.h" "Sources/Platform/Windows/*.hpp")
 ENDIF(WIN32)
 
 set(LibName "Core")
 
-# message(STATUS ${Faber_PLATFORM_SRC})
-
 add_library(${LibName} STATIC 
-    # ${Faber_Math_HEAD}
-    # ${Faber_Math_SRC}
 
+    #engine
+    ${Faber_ENGINE_HEAD}
+    ${Faber_ENGINE_SRC}
+
+    #launcher
+    ${Faber_LAUNCH_HEAD}
+    ${Faber_LAUNCH_SRC}
+
+    #Platform
     ${Faber_PLATFORM_HEAD}
-    "Sources/Platform/Windows/WindowsBase.cpp"
+    ${Faber_PLATFORM_SRC}
 )
 
 set_target_properties(${LibName} PROPERTIES LINKER_LANGUAGE CXX)
 
-source_group(Core\\Include\\Platform FILES ${Faber_PLATFORM_HEAD})
-source_group(Core\\Sources\\Platform\\Windows FILES ${Faber_PLATFORM_SRC})
+#engine
+source_group(Core\\Include\\ FILES ${Faber_ENGINE_HEAD})
+source_group(Core\\Sources\\ FILES ${Faber_ENGINE_SRC})
+
+source_group(Core\\Include\\Luncher\\ FILES ${Faber_LAUNCH_HEAD})
+source_group(Core\\Sources\\Luncher\\ FILES ${Faber_LAUNCH_SRC})
+
+source_group(Core\\Include\\Platform\\ FILES ${Faber_PLATFORM_HEAD})
+source_group(Core\\Sources\\Platform\\ FILES ${Faber_PLATFORM_SRC})
 
 
