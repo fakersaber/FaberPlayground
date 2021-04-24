@@ -2,6 +2,9 @@ file(GLOB Faber_ENGINE_HEAD "Include/*.h" "Include/*.hpp")
 file(GLOB Faber_ENGINE_SRC "Sources/*.cpp" "Sources/*.h" "Sources/*.hpp")
 
 file(GLOB Faber_LAUNCH_HEAD "Include/Launch/*.h" "Include/Launch/*.hpp")
+if(WIN32)
+
+endif(WIN32)
 file(GLOB Faber_LAUNCH_SRC "Sources/Launch/Launch.cpp")
 
 file(GLOB Faber_PLATFORM_HEAD "Include/Platform/*.h" "Include/Platform/*.hpp")

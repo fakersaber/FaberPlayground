@@ -1,26 +1,26 @@
 #include "FaberEngine.h"
 #include "Platform/IPlatformApplication.h"
-
-FEngine* FEngine::GEnginePtr = nullptr;
+#include "Platform/IPlatformWindow.h"
 
 FEngine::FEngine()
-	: ApplicationPtr(nullptr)
 {
-
+	ApplicationPtr = IPlatformAppication::CreatePlatformApp();
+	ApplicationWindowPtr = IPlatformWindow::CreatePlatformWindow();
 }
 
 FEngine::~FEngine(){
-
+	ApplicationPtr.reset();
+	ApplicationWindowPtr.reset();
 }
 
 void FEngine::Init(const std::vector<std::string>& cmdLine, int32 width, int32 height, const char* title){
-	ApplicationPtr = IPlatformAppication::CreatePlatformApp();
 	ApplicationPtr->Init(width, height, title);
+	ApplicationWindowPtr->Init(width, height, title);
 }
 
 void FEngine::Release(){
 	ApplicationPtr->Release();
-	delete ApplicationPtr;
+	ApplicationWindowPtr->Release();
 }
 
 void FEngine::Tick(const float DeltaTime){

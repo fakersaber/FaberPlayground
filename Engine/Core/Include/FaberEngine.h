@@ -1,19 +1,16 @@
 #pragma once
 
 #include "Platform/PlatformCommon.h"
+
 #include <vector>
 #include <string>
+#include <memory>
 
 class IPlatformAppication;
+class IPlatformWindow;
 
 //Created By Launcher
 class FEngine {
-public:
-	static FEngine* Get() { return GEnginePtr; }
-
-private:
-	static FEngine* GEnginePtr;
-
 public:
 	FEngine();
 	~FEngine();
@@ -23,5 +20,6 @@ public:
 
 private:
 	//[Resources Ref]
-	IPlatformAppication* ApplicationPtr;
+	std::unique_ptr<IPlatformAppication> ApplicationPtr;
+	std::unique_ptr<IPlatformWindow> ApplicationWindowPtr;
 };
