@@ -2,8 +2,7 @@
 #include "Platform/IPlatformApplication.h"
 #include "Platform/IPlatformWindow.h"
 
-FEngine::FEngine()
-{
+FEngine::FEngine(){
 	ApplicationPtr = IPlatformAppication::CreatePlatformApp();
 	ApplicationWindowPtr = IPlatformWindow::CreatePlatformWindow();
 }
@@ -13,7 +12,7 @@ FEngine::~FEngine(){
 	ApplicationWindowPtr.reset();
 }
 
-void FEngine::Init(const std::vector<std::string>& cmdLine, int32 width, int32 height, const char* title){
+void FEngine::Init(/*const std::vector<std::string>& cmdLine, */int32 width, int32 height, const char* title){
 	ApplicationPtr->Init(width, height, title);
 	ApplicationWindowPtr->Init(width, height, title);
 }

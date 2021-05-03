@@ -14,7 +14,7 @@ class FEngine {
 public:
 	FEngine();
 	~FEngine();
-	void Init(const std::vector<std::string>& cmdLine, int32 width, int32 height, const char* title);
+	void Init(/*const std::vector<std::string>& cmdLine, */int32 width, int32 height, const char* title);
 	void Tick(const float DeltaTime);
 	void Release();
 

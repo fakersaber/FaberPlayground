@@ -7,17 +7,21 @@ if(WIN32)
     )
 endif(WIN32)
 
+message(${TRIANGLE_SRC})
 
-set(AppName "Triangle")
+set(AppName "TriangleApp")
 
 add_executable(
     ${AppName} 
     ${MainLaunch}
     ${TRIANGLE_SRC}
+    #${CMAKE_CURRENT_SOURCE_DIR}/Triangle.h
+    #${CMAKE_CURRENT_SOURCE_DIR}/Triangle.cpp
 )
 
 if(WIN32)
-    target_link_libraries(${AppName} 
+    target_link_libraries(
+        ${AppName} 
         ${ALL_LIBS} 
         ${WINLIBS}
     )

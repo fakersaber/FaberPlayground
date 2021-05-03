@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Platform/IPlatformApplication.h"
+#include <windows.h>
 
 class WinApplication : public IPlatformAppication {
+public:
+	static HINSTANCE AppHInstance;
+
 public:
 	WinApplication();
 	virtual ~WinApplication();
