@@ -28,12 +28,25 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   	# Disable C++ exceptions.
   	string(REGEX REPLACE "/EH[a-z]+" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
   	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHs-c-")
+
+	# Set Warning
+	if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
+    	string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+	else()
+    	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+  	endif()
+
 	#设置入口为main, 且为普通窗口,不为Console
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS") 
 	#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup") 
   	add_definitions(-D_HAS_EXCEPTIONS=0) #-D后面跟宏
 	add_definitions(-DPLATFORM_WINDOWS)
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+
+# if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+#   # Update if necessary
+#   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic")
+# endif()
 
 #TODO: 修改输出路径
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")

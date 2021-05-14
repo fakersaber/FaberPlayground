@@ -1,4 +1,4 @@
-#include "Launch/Launch.h"
+﻿#include "Launch/Launch.h"
 #include "Platform/Windows/WinApplication.h"
 
 #include <windows.h>
