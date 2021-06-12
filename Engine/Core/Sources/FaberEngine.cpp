@@ -6,36 +6,31 @@ FEngine::FEngine()
 	: bIsExit(false)
 {
 	ApplicationPtr = IPlatformAppication::CreatePlatformApp();
-	ApplicationWindowPtr = IPlatformWindow::CreatePlatformWindow();
 }
 
 FEngine::~FEngine(){
 	ApplicationPtr.reset();
-	ApplicationWindowPtr.reset();
 }
 
-void FEngine::Init(/*const std::vector<std::string>& cmdLine, */int32 width, int32 height, const char* title){
-	ApplicationPtr->Init(width, height, title);
-	ApplicationWindowPtr->Init(width, height, title);
+void FEngine::Init(/*const std::vector<std::string>& cmdLine, */int32 Width, int32 Height, const char* Title){
+	ApplicationPtr->Init(Width, Height, Title);
 }
 
 void FEngine::Tick(const float DeltaTime) {
-	ApplicationPtr->Tick(DeltaTime); //平台App管理逻辑,例如输入输出,程序退出,资源管理等
-	ApplicationWindowPtr->Tick(DeltaTime);//窗口前端接收消息并转发
+	const bool bApplicationExit = ApplicationPtr->Tick(DeltaTime); //Platform App management logic, such as input and output, program exit, resource management, etc.
 
 	//Set Exit Status
-	RequestExit(WindowExit);
+	RequestEngineExit(bApplicationExit);
 }
 
 void FEngine::Release() {
 	ApplicationPtr->Release();
-	ApplicationWindowPtr->Release();
 }
 
-bool FEngine::IsRequestExit() const{
+bool FEngine::IsRequestEngineExit() const{
 	return bIsExit;
 }
 
-void FEngine::RequestExit(const bool ExitStatus){
+void FEngine::RequestEngineExit(const bool ExitStatus){
 	bIsExit = ExitStatus;
 }

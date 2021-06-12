@@ -16,7 +16,7 @@ int32 EngineLuncher::EngineInit(int32 Width, int32 Height, const std::string& Ap
 }
 
 void EngineLuncher::EngineLoop(){
-    while (!FEnginePtr->IsRequestExit()) {
+    while (!FEnginePtr->IsRequestEngineExit()) {
         //#TODO: Add Platform Counter
         FEnginePtr->Tick(0.f);
         FApplication->Tick(0.f);

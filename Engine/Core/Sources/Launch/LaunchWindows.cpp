@@ -1,4 +1,4 @@
-﻿#include "Launch/Launch.h"
+#include "Launch/Launch.h"
 #include "Platform/Windows/WinApplication.h"
 
 #include <windows.h>
@@ -9,8 +9,6 @@ std::vector<std::string> g_CmdLine;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
 {
-	WinApplication::AppHInstance = hInstance;
-
 	int argc = 0;
 	LPWSTR* argv = ::CommandLineToArgvW(::GetCommandLineW(), &argc);
 	for (int32 i = 0; i < argc; ++i)
@@ -19,6 +17,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow)
 		wcstombs(buf, argv[i], 2048);
 		g_CmdLine.emplace_back(buf);
 	}
-
+	WinApplication::SetWinApplicationForHINSTANCE(hInstance);
 	return EngineLuncher::GuardedMain(g_CmdLine);
 }
