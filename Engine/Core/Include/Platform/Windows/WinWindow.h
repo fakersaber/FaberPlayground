@@ -8,10 +8,10 @@ class WinWindow : public IPlatformWindow {
 public:
 	WinWindow();
 	virtual ~WinWindow();
-	virtual void Init(int32 width, int32 height, const char* title) override;
-	virtual void Tick(const float DeltaTime) override;
+	virtual void Init(int32 InWidth, int32 InHeight, const char* Title) override;
+	virtual bool Tick(const float DeltaTime) override;
 	virtual void Release() override;
-
+	static LRESULT CALLBACK WndProc(HWND Hwnd, uint32 Msg, WPARAM wParam, LPARAM lParam);
 private:
 	int32 Width;
 	int32 Height;

@@ -9,22 +9,27 @@
 std::unique_ptr<FEngine> FEnginePtr = nullptr;
 std::unique_ptr<IApplicationBase> FApplication = nullptr; 
 
-int32 EngineLuncher::EngineInit(int32 width, int32 height, const std::string& AppName){
-    FEnginePtr->Init(width, height, AppName.c_str());
+int32 EngineLuncher::EngineInit(int32 Width, int32 Height, const std::string& AppName){
+    FEnginePtr->Init(Width, Height, AppName.c_str());
     FApplication->Init();
     return 0;
 }
 
 void EngineLuncher::EngineLoop(){
-    
+    while (!FEnginePtr->IsRequestExit()) {
+        //#TODO: Add Platform Counter
+        FEnginePtr->Tick(0.f);
+        FApplication->Tick(0.f);
+    }
 }
 
 void EngineLuncher::EngineExit(){
-    FEnginePtr->Release();
+    //Engine post exit
     FApplication->Release();
+    FEnginePtr->Release();
 }
 
-int32 EngineLuncher::GuardedMain(const std::vector<std::string>& cmdLine){
+int32 EngineLuncher::GuardedMain(const std::vector<std::string>& CmdLine){
     FEnginePtr = std::make_unique<FEngine>();
     FApplication = IApplicationBase::CreateApplicationInstance();
     

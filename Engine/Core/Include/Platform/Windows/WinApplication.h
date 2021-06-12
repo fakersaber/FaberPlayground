@@ -3,6 +3,12 @@
 #include "Platform/IPlatformApplication.h"
 #include <windows.h>
 
+struct WindowsMessageHandler : public IMessageHandler {
+	WindowsMessageHandler();
+	virtual ~WindowsMessageHandler();
+	virtual void OnWindowClose() override;
+};
+
 class WinApplication : public IPlatformAppication {
 public:
 	static HINSTANCE AppHInstance;
